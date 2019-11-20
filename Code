@@ -1,0 +1,19 @@
+import discord
+from discord.ext    import  commands
+from discord.ext.commands   import bot
+import asyncio
+
+bot = commands.bot(commnad_prefix='#')
+
+@bot.event
+async def on_ready():
+    print ("i am ready lmao")
+
+
+@bot.event
+async def on_message(HOMO):
+    if(message.channel.id == "test"):
+        await bot.add_reaction(message, ":Homo")
+
+
+bot.run("NjI4ODc2MzM4MjYxOTE3Njk2.XbAWwg.Um3Fh9frJpSKoDXj5J4P2j-1hCA")
