@@ -1,19 +1,33 @@
 import discord
-from discord.ext    import  commands
-from discord.ext.commands   import bot
-import asyncio
 
-bot = commands.bot(commnad_prefix='#')
+client = discord.Client()
 
-@bot.event
+@client.event
+async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('!hallo'):
+        msg = 'Hoi! {0.author.mention}'.format(message)
+        await client.send_message(message.channel, msg)
+
+@client.event
+async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('!Maandag'):
+        msg = 'Bijna weekend! Bier zuipeuhh {0.author.mention}'.format(message)
+        await client.send_message(message.channel, msg)
+
+
+@client.event
 async def on_ready():
-    print ("i am ready lmao")
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
 
-
-@bot.event
-async def on_message(HOMO):
-    if(message.channel.id == "test"):
-        await bot.add_reaction(message, ":Homo")
-
-
-bot.run("NjI4ODc2MzM4MjYxOTE3Njk2.XbAWwg.Um3Fh9frJpSKoDXj5J4P2j-1hCA")
+client.run('NjI4ODc2MzM4MjYxOTE3Njk2.Xd5rUA.PWI7ysJm2ACyL-qokV3Yr9nkGTk')
