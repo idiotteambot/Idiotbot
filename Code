@@ -1,33 +1,23 @@
-import discord
-
-client = discord.Client()
-
-@client.event
-async def on_message(message):
-    # we do not want the bot to reply to itself
-    if message.author == client.user:
-        return
-
-    if message.content.startswith('!hallo'):
-        msg = 'Hoi! {0.author.mention}'.format(message)
-        await client.send_message(message.channel, msg)
-
-@client.event
-async def on_message(message):
-    # we do not want the bot to reply to itself
-    if message.author == client.user:
-        return
-
-    if message.content.startswith('!Maandag'):
-        msg = 'Bijna weekend! Bier zuipeuhh {0.author.mention}'.format(message)
-        await client.send_message(message.channel, msg)
+const Discord = require("discord.js");
+const config = require('../config')
 
 
-@client.event
-async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
+module.exports.run = async (client, message, args, messageArray) => {
 
-client.run('NjI4ODc2MzM4MjYxOTE3Njk2.Xd5rUA.PWI7ysJm2ACyL-qokV3Yr9nkGTk')
+  // sends help message
+  const embed = new Discord.RichEmbed()
+    .setTitle('ToxicBot Commands')
+    .setThumbnail(client.user.displayAvatarURL)
+
+    // je kunt tot 20 fields
+    .addField("Sends a message about marvy", "**!hello**", false)
+
+    .setColor(config.color.primary)
+
+  message.channel.send(embed);
+
+};
+
+module.exports.command = {
+  name: "help"
+};
